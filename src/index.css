@@ -89,3 +89,13 @@ ol li{
     font-size: 30px;
   }
 }
+.deleteButton
+{
+  background-color: #20bf6b;
+  min-height: 10px;
+  width:35px;
+ 
+}
+.deleteButton:hover{
+  background-color: red;
+}

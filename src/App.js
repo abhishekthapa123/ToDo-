@@ -1,5 +1,5 @@
 import React, { button, useState } from "react";
-
+import TodoList from "./Components/TodoList";
 const App = () => {
   const [inputList, setInputList] = useState("");
   const [items, setItems] = useState([]);
@@ -13,8 +13,18 @@ const App = () => {
       setItems((olditems) => {
         return [...olditems, inputList];
       });
-     setInputList("");
+      setInputList("");
+
+   
     }
+  };
+  const deleteItems = (id) => {
+    setItems((olditems) => {
+      return olditems.filter((arrayElem, index) => {
+     
+        return index !== id;
+      });
+    });
   };
 
   return (
@@ -24,12 +34,24 @@ const App = () => {
           <br />
           <h1> ToDo List</h1>
           <br />
-          <input type="text"  value={inputList}placeholder="Add a Items" onChange={itemEvent} />
+          <input
+            type="text"
+            value={inputList}
+            placeholder="Add a Items"
+            onChange={itemEvent}
+          />
           <button onClick={listOfItems}> + </button>
           <ol>
             {/* <li> {inputList} </li> */}
-            {items.map((itemval) => {
-              return <li> {itemval}</li>;
+            {items.map((itemval, index) => {
+              return (
+                <TodoList
+                  key={index}
+                  id={index}
+                  text={itemval}
+                  onSelect={deleteItems}
+                />
+              );
             })}
           </ol>
         </div>
